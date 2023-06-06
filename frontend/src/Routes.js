@@ -1,7 +1,8 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
 import Home from "./containers/Home";
+import Login from "./containers/Login";
 import NotFound from "./containers/NotFound";
+import { Route, Routes } from "react-router-dom";
 
 export default function Links() {
     return (
@@ -10,6 +11,7 @@ export default function Links() {
             {
                 /* Finally, catch all unmatched routes */
             }
+            <Route path="/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />;
         </Routes>
 
