@@ -1,4 +1,5 @@
 import React from "react";
+import ChangeEmail from "./containers/ChangeEmail";
 import ChangePassword from "./containers/ChangePassword";
 import Home from "./containers/Home";
 import Login from "./containers/Login";
@@ -28,7 +29,15 @@ export default function Links() {
                 path="/settings/password"
                 element={
                     // <AuthenticatedRoute> // błąd: "nie zdefiniowane" - wydaje mi się, ze nie musi go byc, bo bez niego jest w porządku
-                        <ChangePassword />
+                    <ChangePassword />
+                    // </AuthenticatedRoute>
+                }
+            />
+            <Route
+                path="/settings/email"
+                element={
+                    // <AuthenticatedRoute> // błąd: "nie zdefiniowane" - wydaje mi się, ze nie musi go byc, bo bez niego jest w porządku
+                        <ChangeEmail />
                     // </AuthenticatedRoute>
                 }
             />
