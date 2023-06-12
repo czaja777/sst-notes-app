@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import LoaderButton from "../components/LoaderButton";
 import { Auth } from "aws-amplify";
+import { Link } from "react-router-dom";
 import { onError } from "../lib/errorLib";
 import { useAppContext } from "../lib/contextLib";
 import { useFormFields } from "../lib/hooksLib";
@@ -18,7 +19,7 @@ export default function Login() {
       });
     
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return fields.email.length > 0 && fields.password.length > 0;
     }
 
     async function handleSubmit(event) {
@@ -27,7 +28,7 @@ export default function Login() {
         setIsLoading(true);
 
         try {
-            await Auth.signIn(email, password);
+            await Auth.signIn(fields.email, fields.password);
             userHasAuthenticated(true);
             nav("/")
         } catch (e) {
@@ -56,6 +57,7 @@ export default function Login() {
                         onChange={handleFieldChange}
                     />
                 </Form.Group>
+                <Link to="/login/reset">Forgot password?</Link>
                 <LoaderButton
                     block="true"
                     size="lg"
