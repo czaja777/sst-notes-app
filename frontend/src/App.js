@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import config from "./config";
+// import config from "./config";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Routes from "./Routes";
@@ -13,7 +13,7 @@ import "./App.css";
 function loadFacebookSDK() {
   window.fbAsyncInit = function() {
     window.FB.init({
-      appId      : '926748195063587',
+      appId      : '926748195063587',  // appId      : config.social.FB,
       cookie     : true,
       xfbml      : true,
       version    : 'v3.1'
