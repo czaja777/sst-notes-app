@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import config from "./config";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Routes from "./Routes";
@@ -8,6 +9,25 @@ import { LinkContainer } from "react-router-bootstrap";
 import { onError } from "./lib/errorLib";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
+
+function loadFacebookSDK() {
+  window.fbAsyncInit = function() {
+    window.FB.init({
+      appId      : '926748195063587',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v3.1'
+    });
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+}
 
 function App() {
   const nav = useNavigate();
@@ -19,6 +39,8 @@ function App() {
   }, []);
   
   async function onLoad() {
+    loadFacebookSDK();
+  
     try {
       await Auth.currentSession();
       userHasAuthenticated(true);
@@ -29,7 +51,7 @@ function App() {
     }
   
     setIsAuthenticating(false);
-  }
+  };
 
   async function handleLogout() {
     await Auth.signOut();

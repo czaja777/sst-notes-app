@@ -14,6 +14,9 @@ const config = {
       APP_CLIENT_ID: process.env.REACT_APP_USER_POOL_CLIENT_ID,
       IDENTITY_POOL_ID: process.env.REACT_APP_IDENTITY_POOL_ID,
     },
+    social: {
+      FB: "926748195063587"
+    },
   };
   
   export default config;

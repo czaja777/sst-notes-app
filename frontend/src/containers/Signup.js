@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import FacebookButton from "../components/FacebookButton";
 import Form from "react-bootstrap/Form";
 import LoaderButton from "../components/LoaderButton";
 import { Auth } from "aws-amplify";
@@ -32,34 +33,38 @@ export default function Signup() {
     return fields.confirmationCode.length > 0;
   }
 
+  function handleFbLogin() {
+    userHasAuthenticated(true);
+  };
+
   async function handleSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
     try {
-        const newUser = await Auth.signUp({
-          username: fields.email,
-          password: fields.password,
-        });
-        setIsLoading(false);
-        setNewUser(newUser);
-      } catch (e) {
-        onError(e);
-        setIsLoading(false);
-      }
+      const newUser = await Auth.signUp({
+        username: fields.email,
+        password: fields.password,
+      });
+      setIsLoading(false);
+      setNewUser(newUser);
+    } catch (e) {
+      onError(e);
+      setIsLoading(false);
+    }
   }
 
   async function handleConfirmationSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
     try {
-        await Auth.confirmSignUp(fields.email, fields.confirmationCode);
-        await Auth.signIn(fields.email, fields.password);
-        userHasAuthenticated(true);
-        nav("/");
-      } catch (e) {
-        onError(e);
-        setIsLoading(false);
-      }
+      await Auth.confirmSignUp(fields.email, fields.confirmationCode);
+      await Auth.signIn(fields.email, fields.password);
+      userHasAuthenticated(true);
+      nav("/");
+    } catch (e) {
+      onError(e);
+      setIsLoading(false);
+    }
   }
 
   function renderConfirmationForm() {
@@ -92,6 +97,8 @@ export default function Signup() {
   function renderForm() {
     return (
       <Form onSubmit={handleSubmit}>
+        <FacebookButton onLogin={handleFbLogin}>Signup with Facebook</FacebookButton>
+        <hr />
         <Form.Group controlId="email" size="lg">
           <Form.Label>Email</Form.Label>
           <Form.Control
