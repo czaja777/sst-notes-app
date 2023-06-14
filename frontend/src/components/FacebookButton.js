@@ -30,17 +30,17 @@ export default class FacebookButton extends Component {
   }
 
   statusChangeCallback = response => {
-    console.log('fb login response: ', response);
+    // console.log('fb login response: ', response);
     if (response.status === "connected") {
       this.handleResponse(response.authResponse);
     } else {
-        console.log(response, "tutaj");
+        // console.log(response, "tutaj");
       this.handleError(response);
     }
   };
 
   checkLoginState = () => {
-    console.log('call check login status');
+    // console.log('call check login status');
     window.FB.getLoginStatus(this.statusChangeCallback);
   };
 
@@ -69,7 +69,7 @@ export default class FacebookButton extends Component {
       this.props.onLogin(response);
     } catch (e) {
       this.setState({ isLoading: false });
-      console.log(e, "inny");
+    //   console.log(e, "inny");
       this.handleError(e);
     }
   }
