@@ -31,7 +31,7 @@ function loadFacebookSDK() {
 
 function App() {
   const nav = useNavigate();
-  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  // const [isAuthenticating, setIsAuthenticating] = useState(true);
   const [isAuthenticated, userHasAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -49,8 +49,8 @@ function App() {
         onError(e);
       }
     }
-  
-    setIsAuthenticating(false);
+    
+    // setIsAuthenticating(false);
   };
 
   async function handleLogout() {
