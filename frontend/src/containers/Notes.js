@@ -34,7 +34,8 @@ export default function Notes() {
         setContent(content);
         setNote(note);
       } catch (e) {
-        onError(e);
+        // onError(e);
+        console.error("error,notes.js 38")
       }
     }
 
@@ -86,7 +87,9 @@ export default function Notes() {
       });
       nav("/");
     } catch (e) {
-      onError(e);
+      // onError(e);
+      console.error("error,notes.js 91")
+
       setIsLoading(false);
     }
   }
@@ -112,7 +115,8 @@ export default function Notes() {
       await deleteNote();
       nav("/");
     } catch (e) {
-      onError(e);
+      // onError(e);
+      console.error("error,notes.js 119")
       setIsDeleting(false);
     }
   }
