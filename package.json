@@ -21,5 +21,8 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@sentry/node": "^7.59.3"
+  }
 }
