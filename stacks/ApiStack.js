@@ -10,6 +10,7 @@ export function ApiStack({ stack, app }) {
       app.stage === "prod" ? "api.szyneczka.online" : undefined,
     defaults: {
       authorizer: "iam",
+      memorySize: 128,
       function: {
         bind: [table],
         environment: {
