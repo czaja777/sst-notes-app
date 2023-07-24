@@ -10,8 +10,7 @@ export function ApiStack({ stack, app }) {
       app.stage === "prod" ? "api.szyneczka.online" : undefined,
     defaults: {
       authorizer: "iam",
-      // memorySize: 128,
-      function: {
+      memorySize: 128,      function: {
         bind: [table],
         environment: {
           STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
