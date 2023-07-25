@@ -7,6 +7,9 @@ function allocMem() {
   return bigList.concat(allocMem());
 }
 
+// Some faulty code
+dynamoDb.notExist();
+
 export const main = handler(async (event) => {
   const params = {
     TableName: Table.Notes.tableName,
@@ -23,10 +26,6 @@ export const main = handler(async (event) => {
   if (!result.Item) {
     throw new Error("Item not found.");
   }
-
-  allocMem();
-  // // Set a timeout
-  // await new Promise((resolve) => setTimeout(resolve, 10000));
 
   // Return the retrieved item
   return result.Item;
